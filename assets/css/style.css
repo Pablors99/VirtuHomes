@@ -1,0 +1,117 @@
+body {
+    background: url('../img/background_new.png') rgba(0, 0, 0, .3) center/cover no-repeat;
+    background-blend-mode: multiply;
+    background-attachment: fixed;
+}
+
+/* ESTILO DE NAVBAR */
+.navbar-nav a {
+    display: inline-block;
+    position: relative;
+}
+
+.navbar-nav a::after {
+    content: "";
+    display: block;
+    position: absolute;
+    background: none repeat scroll 0 0 transparent;
+    background-color: #fff;
+    bottom: 0;
+    left: 50%;
+    height: 2px;
+    width: 0;
+    transition: width .3s ease 0s, left .3s ease 0s;
+}
+
+.navbar-nav a:hover::after, a.active::after {
+    width: 100%;
+    left: 0;
+}
+
+/* IMAGEN PREVIEW */
+#imagen-preview {
+    max-width: 100%;
+    max-height: 384px;
+    width: auto;
+    height: auto;
+    aspect-ratio: 1/1;
+}
+
+/* COLOR DE BORDE */
+.neon-border-top {
+  position: relative;
+  background-color: rgb(7, 60, 104, .8);
+  overflow: hidden;
+}
+
+.neon-border-top::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  z-index: 1;
+  background: linear-gradient(to right, #00aaff, #0077ff);
+  box-shadow: 0 0 20px 10px rgba(0, 120, 255, .6);
+}
+
+.neon-border-content {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 0 8px rgba(255, 255, 255, .8);
+}
+
+/* CONTENIDO DE CARD EN PISOS */
+.box {
+    transition: box-shadow .4s;
+}
+
+.box:hover {
+    border: 1px solid #269abc;
+    box-shadow: 2px 2px 4px #269abc;
+}
+
+.card, .bg-filter {
+    backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, .5);
+}
+
+.card h2 {
+    font-size: 1.4rem;
+}
+
+.card h3 {
+    font-size: .8rem;
+}
+
+.card p {
+    line-height: 1.4em;
+}
+
+.card-description {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+.card-img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 4/3;
+}
+
+@media (max-width: 991px) {
+    .sidebar {
+        backdrop-filter: blur(5px);
+        background-color: rgba(7, 60, 104, .15);
+    }
+}
+
+/* PRUEBAS */
+
+.img-apartment {
+    object-fit: cover;
+    aspect-ratio: 1/1;
+}
