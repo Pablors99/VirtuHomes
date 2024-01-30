@@ -71,6 +71,24 @@ $lista_municipios = $apartmentController->municipios();
         </div>
     <?php endforeach; ?>
     </div>
+
+    <div class="d-flex justify-content-center align-items-center gap-3">
+        <div class="pagination">
+            <?php if ($page > 1): ?>
+                <a href="<?php echo buildUrl($page - 1, $filter); ?>" class="btn btn-primary"><i class="fas fa-chevron-left"></i> Anterior</a>
+            <?php else: ?>
+                <a href="#" class="btn btn-primary disabled"><i class="fas fa-chevron-left"></i> Anterior</a>
+            <?php endif; ?>
+        </div>
+        <div class="pagination">
+            <?php if ($page < $number_of_pages): ?>
+                <a href="<?php echo buildUrl($page + 1, $filter); ?>" class="btn btn-primary">Siguiente <i class="fas fa-chevron-right"></i></a>
+            <?php else: ?>
+                <a href="#" class="btn btn-primary disabled">Siguiente <i class="fas fa-chevron-right"></i></a>
+            <?php endif; ?>
+        </div>
+    </div>
+
 <?php else: ?>
     <div class="col-md-6">
        <div class="card">
@@ -78,5 +96,22 @@ $lista_municipios = $apartmentController->municipios();
               <h2 class="card-title d-flex justify-content-center align-items-center">No se han encontrado pisos a la venta disponibles.</h2>
           </div>
        </div>
+    </div>
+
+    <div class="d-flex justify-content-center align-items-center gap-3">
+        <div class="pagination">
+            <?php if ($page > 1): ?>
+                <a href="<?php echo buildUrl($page - 1, $filter); ?>" class="btn btn-primary"><i class="fas fa-chevron-left"></i> Anterior</a>
+            <?php else: ?>
+                <a href="#" class="btn btn-primary disabled"><i class="fas fa-chevron-left"></i> Anterior</a>
+            <?php endif; ?>
+        </div>
+        <div class="pagination">
+            <?php if ($page < $number_of_pages): ?>
+                <a href="<?php echo buildUrl($page + 1, $filter); ?>" class="btn btn-primary">Siguiente <i class="fas fa-chevron-right"></i></a>
+            <?php else: ?>
+                <a href="#" class="btn btn-primary disabled">Siguiente <i class="fas fa-chevron-right"></i></a>
+            <?php endif; ?>
+        </div>
     </div>
 <?php endif; ?>

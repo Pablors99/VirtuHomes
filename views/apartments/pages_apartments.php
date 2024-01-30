@@ -1,11 +1,4 @@
 <nav class='d-flex justify-content-center align-items-center'>
-    <div class="pagination">
-        <?php if ($page > 1): ?>
-            <a href="<?php echo buildUrl($page - 1, $filter); ?>" class="btn btn-primary"><i class="fas fa-chevron-left"></i> Anterior</a>
-        <?php else: ?>
-            <a href="#" class="btn btn-primary disabled"><i class="fas fa-chevron-left"></i> Anterior</a>
-        <?php endif; ?>
-    </div>
     <form action="./?apartment=filter" method="POST" class="needs-validation bg-filter rounded p-2 mx-4" novalidate>
         <div class="row">
             <div class="form-group col-md-1 text-center">
@@ -31,14 +24,7 @@
                 <input type="number" class="form-control" name="aseos" id="aseos" placeholder="Baños" required>
             </div>
         </div>
-    </form>
-    <div class="pagination">
-        <?php if ($page < $number_of_pages): ?>
-            <a href="<?php echo buildUrl($page + 1, $filter); ?>" class="btn btn-primary">Siguiente <i class="fas fa-chevron-right"></i></a>
-        <?php else: ?>
-            <a href="#" class="btn btn-primary disabled">Siguiente <i class="fas fa-chevron-right"></i></a>
-        <?php endif; ?>
-    </div>
+    </form>   
 </nav>
 
 <?php

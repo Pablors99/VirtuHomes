@@ -66,7 +66,7 @@ else header('Location: ./?apartment=list&page=1');
                 <?php elseif (isset($_SESSION['admin'])): ?>
                     <a href="./?apartment=archive&ref=<?= $apartment['id_piso'] ?>" class="btn btn-danger text-white mt-2" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Retirar piso"><i class="fa-solid fa-trash"></i> Retirar piso inapropiado</a>
                 <?php else: ?>
-                <a href="./?user=login ?>" class="btn btn-primary btn-block text-white mt-2"><i class="fa-solid fa-cart-shopping"></i> Comprar</a>
+                <a href="./?user=login" class="btn btn-primary btn-block text-white mt-2"><i class="fa-solid fa-cart-shopping"></i> Comprar</a>
                 <?php endif ?>
             </div>
         </div>
