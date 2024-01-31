@@ -29,15 +29,16 @@ class apartment_model {
 
     public function updateApartment($apartmentData) {
         $consulta = "UPDATE pisos SET
-        id_usuario = :id_usuario, habitaciones = :habitaciones, aseos = :aseos, metros = :metros, planta = :planta, precio = :precio, descripcion = :descripcion,
-        municipio = :municipio, calle = :calle, numero_calle = :numero_calle, codigo_postal = :codigo_postal, imagen = :imagen, estado = 'EN VENTA' WHERE id_piso = :id_piso";
+        id_usuario = :id_usuario, habitaciones = :habitaciones, aseos = :aseos, metros = :metros, ";
 
         if ($apartmentData['planta'] === null) {
-            $consulta .= " VALUES (:id_usuario, :habitaciones, :aseos, :metros, NULL, :precio, :descripcion, :municipio, :calle, :numero_calle, :codigo_postal, :imagen)";
+            $consulta .= " planta = NULL";
             unset($apartmentData['planta']);
         } else {
-            $consulta .= " VALUES (:id_usuario, :habitaciones, :aseos, :metros, :planta, :precio, :descripcion, :municipio, :calle, :numero_calle, :codigo_postal, :imagen)";
+            $consulta .= " planta = :planta";
         }
+
+        $consulta .= ", precio = :precio, descripcion = :descripcion, municipio = :municipio, calle = :calle, numero_calle = :numero_calle, codigo_postal = :codigo_postal, imagen = :imagen, estado = 'EN VENTA' WHERE id_piso = :id_piso";
 
         try {
             $stmt = $this->db->connect()->prepare($consulta);

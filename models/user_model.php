@@ -26,14 +26,13 @@ class user_model {
         }
     }
 
-    public function updateUser($id_usuario, $dni, $nombre, $apellidos, $correo, $telefono, $contrasenia) {
+    public function updateUser($id_usuario, $nombre, $apellidos, $correo, $telefono, $contrasenia) {
         $hashedPassword = password_hash($contrasenia, PASSWORD_DEFAULT);
-        $consulta = "UPDATE usuarios SET dni = :dni, nombre = :nombre, apellidos = :apellidos, correo = :correo,
-        telefono = :telefono, contrasenia = :contrasenia) WHERE id_usuario = :id_usuario";
+        $consulta = "UPDATE usuarios SET nombre = :nombre, apellidos = :apellidos, correo = :correo,
+        telefono = :telefono, contrasenia = :contrasenia WHERE id_usuario = :id_usuario";
         try {
             $stmt = $this->db->connect()->prepare($consulta);
             $stmt->bindParam(':id_usuario', $id_usuario);
-            $stmt->bindParam(':dni', $dni);
             $stmt->bindParam(':nombre', $nombre);
             $stmt->bindParam(':apellidos', $apellidos);
             $stmt->bindParam(':correo', $correo);

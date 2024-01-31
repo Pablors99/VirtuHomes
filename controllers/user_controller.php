@@ -106,15 +106,7 @@ class user_controller {
                 $_SESSION['ip_address'] = $_SERVER['REMOTE_ADDR'];
                 $_SESSION['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
                 $_SESSION['shopcar'] = [];
-                $_SESSION['user'] = [
-                    'id_usuario' => $result['user']['id_usuario'],
-                    'dni' => $result['user']['dni'],
-                    'nombre' => $result['user']['nombre'],
-                    'apellidos' => $result['user']['apellidos'],
-                    'correo' => $result['user']['correo'],
-                    'telefono' => $result['user']['telefono'],
-                    'contrasenia' => $result['user']['contrasenia'],
-                ];
+                $_SESSION['user'] = $result['user'];
 
                 header("Location: ./?user=dashboard");
                 exit();
@@ -154,14 +146,39 @@ class user_controller {
             if ($correoError) $this->config->encode($correoError, $pageSignUp, 'danger');
 
             $result = $this->userModel->createUser($dni, $nombre, $apellidos, $correo, $telefono, $contrasenia);
-            if ($result) {
+            if ($result === true) {
                 $this->config->encode('Se te ha registrado correctamente, por favor inicia sesión', './?user=login', 'success');
                 exit();
             } else {
-                $this->config->encode($result, $pageSignUp, 'success');
+                $this->config->encode($result, $pageSignUp, 'danger');
             }
         } else {
             header("Location: $pageSignUp");
+        }
+    }
+
+    public function update() {
+      $pageSettings = './?user=settings';
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id_usuario = $_GET['id'];
+            $nombre = $_POST['nombre'];
+            $apellidos = $_POST['apellidos'];
+            $correo = $_POST['correo'];
+            $telefono = $_POST['telefono'];
+            $contrasenia = $_POST['contrasenia'];
+
+            $result = $this->userModel->updateUser($id_usuario, $nombre, $apellidos, $correo, $telefono, $contrasenia);
+            if ($result === true) {
+              $login = $this->userModel->loginUser($correo, $contrasenia);
+              if ($login['status'] === 'success')
+                $_SESSION['user'] = $login['user'];
+                $this->config->encode('Se han actualizado tus datos correctamente.', $pageSettings, 'success');
+                exit();
+            } else {
+                $this->config->encode($result, $pageSettings, 'danger');
+            }
+        } else {
+            header("Location: $pageSettings");
         }
     }
 }
